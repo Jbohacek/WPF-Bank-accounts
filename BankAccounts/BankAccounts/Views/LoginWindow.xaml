@@ -1,0 +1,118 @@
+﻿<Window x:Class="BankAccounts.Views.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankAccounts.Views"
+        xmlns:uc="clr-namespace:BankAccounts.Controls"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="650" Width="450"
+        WindowStyle="None" Background="Transparent" 
+        ResizeMode="NoResize" AllowsTransparency="True"
+        WindowStartupLocation="CenterOwner">
+
+    <Border Background="{StaticResource MainColorDark}" CornerRadius="15" 
+            BorderThickness="2" BorderBrush="{StaticResource MainColorLightDark}" 
+            MouseDown="Border_MouseDown">
+        
+        <Grid Margin="5,5,5,5">
+            <!--TopRow-->
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="35"/>
+                <ColumnDefinition Width="35"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <Image Source="\Pictures\BankNotes.png" 
+                   HorizontalAlignment="Left"
+                   Margin="6" >
+            </Image>
+            
+            <TextBlock 
+                Text="Login" 
+                Foreground="{StaticResource MainColorWhite}" 
+                VerticalAlignment="Center"
+                FontSize="30"
+                FontFamily="Cascadia Code SemiBold"
+                Margin="40,0,0,0">
+            </TextBlock>
+            
+            <Button 
+                    Grid.Column="1" Content="-"
+                    Style="{StaticResource ButtonSmall}">
+            </Button>
+            
+            <Button 
+                    Grid.Column="2" Content="x"
+                    Style="{StaticResource ButtonSmall}">
+            </Button>
+            
+            <!--MainBody-->
+            <!--<Grid Grid.ColumnSpan="3" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="8*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                
+                <Border Grid.Column="1" 
+                        Background="{StaticResource MainColorLightDark}"
+                        CornerRadius="15"
+                        Margin="0,50,0,250">
+                    
+                   <StackPanel Margin="18">
+                        <TextBlock Text="Username" Style="{StaticResource LabelLogin}"/>
+                        <TextBox Text="" Style="{StaticResource BoxLogin}"/>
+                        <TextBlock Text="Password" Style="{StaticResource LabelLogin}" Margin="0,10,0,0"/>
+                        <PasswordBox Style="{StaticResource PasswordLogin}"/>
+                        <Button  Margin="50,30,50,0"
+                                 Content="Login"
+                                 FontFamily="Cascadia Code SemiBold"
+                                 FontSize="30"
+                                 Foreground="{StaticResource MainColorWhite}">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Button.Template>
+                            <Button.Style>
+                                <Style TargetType="Button">
+                                    <Setter Property="Background" Value="{StaticResource MainColorBlue}"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="#00f3ff"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style> 
+                            </Button.Style>
+                            
+                        </Button>
+                        <StackPanel Orientation="Vertical" Margin="15,15,15,0">
+                            <TextBlock Text="Dont have account yet? " Style="{StaticResource LabelLogin}" FontSize="15" HorizontalAlignment="Center"/>
+                            <TextBlock Text="Create here" Style="{StaticResource LabelLogin}" FontSize="15" HorizontalAlignment="Center" Foreground="{StaticResource MainColorBlue}" Cursor="Hand"/>
+                        </StackPanel>
+                    </StackPanel> 
+                    
+                </Border>
+                
+                
+            </Grid>-->
+            <Grid Grid.ColumnSpan="3" Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <uc:LoginControl Grid.Column="1" Margin="30,30,30,250" Visibility="Visible" x:Name="MyLogin"/>
+                <uc:RegisterControl Grid.Column="1" Margin="30,30,30,150" Visibility="Hidden" x:Name="MyRegister"/>
+            </Grid>
+            
+        </Grid>
+    </Border>
+</Window>

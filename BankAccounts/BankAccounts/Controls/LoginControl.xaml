@@ -1,0 +1,52 @@
+﻿<UserControl x:Class="BankAccounts.Controls.LoginControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankAccounts.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="350" d:DesignWidth="350">
+    <Border  
+                        Background="{StaticResource MainColorLightDark}"
+                        CornerRadius="15"
+                        >
+
+        <StackPanel Margin="18">
+            <TextBlock Text="Username" Style="{StaticResource LabelLogin}"/>
+            <TextBox Text="" Style="{StaticResource BoxLogin}" x:Name="BoxUsername"/>
+            <TextBlock Text="Password" Style="{StaticResource LabelLogin}" Margin="0,10,0,0"/>
+            <PasswordBox Style="{StaticResource PasswordLogin}" x:Name="BoxPassword"/>
+            <Button  Margin="50,30,50,0"
+                                 Content="Login"
+                                 FontFamily="Cascadia Code SemiBold"
+                                 FontSize="30"
+                                 Foreground="{StaticResource MainColorWhite}"
+                                    x:Name="ButtonLogin">
+                
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource MainColorBlue}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#00f3ff"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            <StackPanel Orientation="Vertical" Margin="15,15,15,0">
+                <TextBlock Text="Dont have account yet? " Style="{StaticResource LabelLogin}" FontSize="15" HorizontalAlignment="Center"/>
+                <TextBlock Text="Create here" Style="{StaticResource LabelLogin}" FontSize="15" HorizontalAlignment="Center" Foreground="{StaticResource MainColorBlue}" Cursor="Hand" x:Name="ButtonCreateAccount" MouseDown="ButtonCreateAccount_MouseDown" />
+            </StackPanel>
+        </StackPanel>
+
+    </Border>
+</UserControl>
