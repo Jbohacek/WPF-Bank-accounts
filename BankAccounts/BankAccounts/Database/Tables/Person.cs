@@ -24,7 +24,7 @@ namespace BankAccounts.Database.Tables
         [Ignore]
         public string FullName { get { return FirstName + " " + LastName; } }
         [Ignore]
-        public string UserName { get { return LastName.ToLower() + LastName.ToLower(); } }
+        public string UserName { get { return (LastName.ToLower() + FirstName.ToLower()); } }
 
         [NotNull]
         public double Balance { get; set; }

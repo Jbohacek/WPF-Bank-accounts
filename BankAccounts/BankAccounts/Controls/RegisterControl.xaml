@@ -5,13 +5,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankAccounts.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="350">
+             d:DesignHeight="480" d:DesignWidth="350">
     <Border  
                         Background="{StaticResource MainColorLightDark}"
                         CornerRadius="15"
                         >
-
+        
         <StackPanel Margin="18">
+            <Image Source="\Pictures\BackArrow.png"
+                   Width="35"
+                   HorizontalAlignment="Left"
+                   Margin="-6,-3,0,8"
+                   Cursor="Hand"
+                   MouseDown="Image_MouseDown">
+                    
+            </Image>
             <!--first name and last name-->
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch">
 

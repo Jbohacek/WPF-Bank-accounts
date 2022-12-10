@@ -21,7 +21,9 @@
                                  FontFamily="Cascadia Code SemiBold"
                                  FontSize="30"
                                  Foreground="{StaticResource MainColorWhite}"
-                                    x:Name="ButtonLogin">
+                                    x:Name="ButtonLogin"
+                     Click="ButtonLogin_Click"
+                      >
                 
                 <Button.Template>
                     <ControlTemplate TargetType="Button">

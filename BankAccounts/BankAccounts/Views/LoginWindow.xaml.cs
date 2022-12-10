@@ -1,8 +1,11 @@
 ﻿using BankAccounts.Database.Tables;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,6 +13,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -29,23 +33,25 @@ namespace BankAccounts.Views
             MyNotification.MyLoginWindow = this;
             MyNotification.MyRegisterControl = MyRegister;
 
-            Person person = new Person()
-            {
-                FirstName = "Admin",
-                LastName = "Admin",
-                Email = "Admin@Admin.cz",
-                Password = "123456Ab",
-                BirthDate = DateTime.Now,
-                Balance = 9999999,
-                IdAccount = "A1"
-            };
+            //Person person = new Person()
+            //{
+            //    FirstName = "Admin",
+            //    LastName = "Admin",
+            //    Email = "Admin@Admin.cz",
+            //    Password = "123456Ab",
+            //    BirthDate = DateTime.Now,
+            //    Balance = 9999999,
+            //    IdAccount = "A1"
+            //};
 
             data = new DatabaseHandler("BankAccounts");
 
-            data.InsertValue<Person>(person);
+            //data.InsertValue<Person>(person);
 
             MyLogin.MyDatabase = data;
             MyRegister.MyDatabase = data;
+
+           
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -54,6 +60,60 @@ namespace BankAccounts.Views
             {
                 DragMove();
             }
+        }
+
+        public void Login(string username, string password)
+        {
+            
+            var x = data.Load<Person>();
+            Debug.WriteLine(x[1].UserName + " - " + username);
+            var nasel = x.FirstOrDefault(x => (x.UserName == username) && (x.Password == password));
+            if (nasel != null)
+            {
+                Debug.WriteLine("Nasel");
+                DoubleAnimation heightani = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.3)));
+
+                DoubleAnimation opactizthis = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
+                opactizthis.BeginTime = TimeSpan.FromSeconds(0.3);
+                opactizthis.Completed += RemoveLogin;
+
+                this.BeginAnimation(OpacityProperty, opactizthis);
+                MyLogin.BeginAnimation(HeightProperty, heightani);
+
+
+
+            }
+            else
+            {
+                MyLogin.BoxUsername.BorderBrush = new SolidColorBrush(Colors.Red);
+                MyLogin.BoxPassword.BorderBrush = new SolidColorBrush(Colors.Red);
+            }
+
+        }
+
+        private void RemoveLogin(object? sender, EventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            this.Close();
+        }
+
+        private void Border_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Enter)
+            {
+                Login(MyLogin.BoxUsername.Text, MyLogin.BoxPassword.Password);
+            }
+        }
+
+        private void Minimaze(object sender, RoutedEventArgs e)
+        {
+            this.WindowState= WindowState.Minimized;
+        }
+
+        private void Cross(object sender, RoutedEventArgs e)
+        {
+           Environment.Exit(0);
         }
     }
 }

@@ -13,7 +13,7 @@
 
     <Border Background="{StaticResource MainColorDark}" CornerRadius="15" 
             BorderThickness="2" BorderBrush="{StaticResource MainColorLightDark}" 
-            MouseDown="Border_MouseDown">
+            MouseDown="Border_MouseDown" KeyDown="Border_KeyDown">
         
         <Grid Margin="5,5,5,5">
             <!--TopRow-->
@@ -41,14 +41,16 @@
                 Margin="40,0,0,0">
             </TextBlock>
             
-            <Button 
+            <Button IsTabStop="False"
                     Grid.Column="1" Content="-"
-                    Style="{StaticResource ButtonSmall}">
+                    Style="{StaticResource ButtonSmall}"
+                    Click="Minimaze">
             </Button>
             
-            <Button 
+            <Button  IsTabStop="False"
                     Grid.Column="2" Content="x"
-                    Style="{StaticResource ButtonSmall}">
+                    Style="{StaticResource ButtonSmall}"
+                     Click="Cross">
             </Button>
             
             <!--MainBody-->
@@ -109,8 +111,8 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <uc:LoginControl Grid.Column="1" Margin="30,30,30,250" Visibility="Visible" x:Name="MyLogin" Style="{StaticResource animatedList}"/>
-                <uc:RegisterControl Grid.Column="1" Margin="0,30,0,130" Visibility="Hidden" x:Name="MyRegister" Style="{StaticResource animatedList}"/>
+                <uc:LoginControl Grid.Column="1" Margin="30,30,30,250" Visibility="Visible" x:Name="MyLogin" Style="{StaticResource animatedList}" Height="300"/>
+                <uc:RegisterControl Grid.Column="1" Margin="0,30,0,70" Visibility="Hidden" x:Name="MyRegister" Style="{StaticResource animatedList}"/>
                 <uc:NotificationControl Grid.Column="1" Margin="30,30,30,350" Visibility="Hidden" x:Name="MyNotification" Style="{StaticResource animatedList}"/>
             </Grid>
             

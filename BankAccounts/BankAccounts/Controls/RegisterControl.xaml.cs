@@ -82,5 +82,15 @@ namespace BankAccounts.Controls
 
 
         }
+
+        private void Image_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(MyLoginWindow!= null) 
+            {
+                MyLoginWindow.MyRegister.Visibility = Visibility.Hidden;
+                MyLoginWindow.MyLogin.Visibility= Visibility.Visible;
+            }
+            
+        }
     }
 }
