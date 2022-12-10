@@ -1,0 +1,55 @@
+﻿<UserControl x:Class="BankAccounts.Controls.NotificationControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BankAccounts.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="250" d:DesignWidth="250">
+    <Border  
+                        Background="{StaticResource MainColorLightDark}"
+                        CornerRadius="15"
+                        >
+
+        <StackPanel Margin="18">
+            <TextBlock Text="Your username" Style="{StaticResource LabelLogin}" FontFamily="Cascadia Mono SemiBold" HorizontalAlignment="Center"/>
+            <TextBlock Text="Your username has been set to " 
+                       TextWrapping="Wrap" Style="{StaticResource LabelLogin}"
+                       HorizontalAlignment="Center" 
+                       FontSize="15"  
+                       TextAlignment="Center"
+                       Margin="5"/>
+
+            <TextBox Style="{StaticResource BoxLogin}" IsReadOnly="True" Margin="10,0,10,0" x:Name="BoxShowUserName"></TextBox>
+            <Button  Margin="20,60,20,0"
+                                 Content="I Understand"
+                                 FontFamily="Cascadia Code SemiBold"
+                                 FontSize="24"
+                                 Foreground="{StaticResource MainColorWhite}"
+                                    x:Name="Continue"
+                     Click="Continue_Click">
+
+                <Button.Template>
+                    <ControlTemplate TargetType="Button">
+                        <Border CornerRadius="8" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Button.Template>
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="Background" Value="{StaticResource MainColorBlue}"/>
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#00f3ff"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+
+            </Button>
+            
+        </StackPanel>
+
+    </Border>
+</UserControl>

@@ -24,7 +24,7 @@ namespace BankAccounts.Controls
 
 
         public LoginWindow? MyLoginWindow { get; set; }
-
+        public DatabaseHandler? MyDatabase { get; set; }
 
 
         public LoginControl()

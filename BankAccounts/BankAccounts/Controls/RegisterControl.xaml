@@ -57,7 +57,8 @@
                                  FontFamily="Cascadia Code SemiBold"
                                  FontSize="30"
                                  Foreground="{StaticResource MainColorWhite}"
-                                x:Name="ButtonRegister">
+                                x:Name="ButtonRegister"
+                     Click="ButtonRegister_Click">
                 <Button.Template>
                     <ControlTemplate TargetType="Button">
                         <Border CornerRadius="8" Background="{TemplateBinding Background}">

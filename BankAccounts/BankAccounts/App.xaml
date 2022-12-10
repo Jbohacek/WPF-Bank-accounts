@@ -37,7 +37,7 @@
         <Style x:Key="LabelLogin" TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontFamily" Value="Cascadia Code SemiLight"/>
         </Style>
         
         <Style x:Key="BoxLogin" TargetType="TextBox">
@@ -45,7 +45,7 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="CaretBrush" Value="{StaticResource MainColorWhite}"/>
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontFamily" Value="Cascadia Code SemiLight"/>
             <Setter Property="BorderBrush" Value="{StaticResource MainColorWhite}"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="Margin" Value="0,0,5,5"/>
@@ -55,10 +55,28 @@
             <Setter Property="Background" Value="Transparent"/>
             <Setter Property="CaretBrush" Value="{StaticResource MainColorWhite}"/>
             <Setter Property="FontSize" Value="24"/>
-            <Setter Property="FontFamily" Value="Cascadia Mono"/>
+            <Setter Property="FontFamily" Value="Cascadia Code SemiLight"/>
             <Setter Property="BorderBrush" Value="{StaticResource MainColorWhite}"/>
             <Setter Property="BorderThickness" Value="0,0,0,1"/>
             <Setter Property="Margin" Value="0,0,5,5"/>
         </Style>
+
+        <Style TargetType="FrameworkElement" x:Key="animatedList">
+            <Setter Property="Visibility" Value="Hidden"/>
+            <Style.Triggers>
+                <Trigger Property="Visibility" Value="Visible">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity"
+                             From="0.0" To="1.0" Duration="0:0:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+        
     </Application.Resources>
 </Application>

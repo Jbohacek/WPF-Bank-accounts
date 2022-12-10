@@ -109,8 +109,9 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
-                <uc:LoginControl Grid.Column="1" Margin="30,30,30,250" Visibility="Visible" x:Name="MyLogin"/>
-                <uc:RegisterControl Grid.Column="1" Margin="30,30,30,150" Visibility="Hidden" x:Name="MyRegister"/>
+                <uc:LoginControl Grid.Column="1" Margin="30,30,30,250" Visibility="Visible" x:Name="MyLogin" Style="{StaticResource animatedList}"/>
+                <uc:RegisterControl Grid.Column="1" Margin="0,30,0,130" Visibility="Hidden" x:Name="MyRegister" Style="{StaticResource animatedList}"/>
+                <uc:NotificationControl Grid.Column="1" Margin="30,30,30,350" Visibility="Hidden" x:Name="MyNotification" Style="{StaticResource animatedList}"/>
             </Grid>
             
         </Grid>
