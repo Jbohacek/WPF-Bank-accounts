@@ -121,7 +121,17 @@ namespace BankAccounts.Views
 
         private void Cross(object sender, RoutedEventArgs e)
         {
-           Environment.Exit(0);
+            DoubleAnimation HeightChange = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.4)));
+            this.BeginAnimation(HeightProperty, HeightChange);
+            DoubleAnimation OpactytyThisWindow = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
+            OpactytyThisWindow.BeginTime = TimeSpan.FromSeconds(0.2);
+            OpactytyThisWindow.Completed += CloseThis;
+            this.BeginAnimation(OpacityProperty, OpactytyThisWindow);
+        }
+
+        private void CloseThis(object? sender, EventArgs e)
+        {
+            Environment.Exit(0);
         }
     }
 }

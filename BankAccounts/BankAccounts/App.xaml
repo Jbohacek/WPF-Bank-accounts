@@ -84,7 +84,7 @@
         <Style TargetType="Button" x:Key="MenuButtons">
             
             <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"></Setter>
-            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Cascadia Code SemiLight"/>
             <Setter Property="Background" Value="Transparent"></Setter>
             <Setter Property="Template">
@@ -104,7 +104,7 @@
                                 <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                                                 Duration="0:0:0.1"
                                                 To="#80bfbcbb"/>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="18" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="22" Duration="0:0:0.1"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.EnterActions>
@@ -114,7 +114,7 @@
                                 <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
                                                 Duration="0:0:0.1"
                                                 To="Transparent"/>
-                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="16" Duration="0:0:0.1"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="20" Duration="0:0:0.1"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </Trigger.ExitActions>
@@ -127,7 +127,36 @@
             <Setter Property="HorizontalAlignment" Value="Left"/>
             <Setter Property="Margin" Value="3,0,0,0"/>
         </Style>
-       
+
+
+        <Style TargetType="Button" BasedOn="{StaticResource MenuButtons}" x:Key="SureButtons">
+            <Setter Property="FontSize" Value="24"/>
+            <Setter Property="Margin" Value="15"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                Duration="0:0:0.1"
+                                                To="#80bfbcbb"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="26" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                Duration="0:0:0.1"
+                                                To="#393E46"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="24" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
 
     </Application.Resources>
 </Application>

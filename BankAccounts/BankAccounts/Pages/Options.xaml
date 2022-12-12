@@ -1,0 +1,14 @@
+﻿<Page x:Class="BankAccounts.Pages.Options"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BankAccounts.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1000"
+      Title="Options">
+
+    <Grid Background="White">
+        <TextBlock Text="ahoj" Foreground="Black" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center"></TextBlock>
+    </Grid>
+</Page>

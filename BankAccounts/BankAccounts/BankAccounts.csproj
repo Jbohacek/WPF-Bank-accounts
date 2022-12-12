@@ -10,6 +10,13 @@
   <ItemGroup>
     <None Remove="Pictures\BackArrow.png" />
     <None Remove="Pictures\BankNotes.png" />
+    <None Remove="Pictures\Card.png" />
+    <None Remove="Pictures\Contacts.png" />
+    <None Remove="Pictures\Log_out.png" />
+    <None Remove="Pictures\Options.png" />
+    <None Remove="Pictures\Overview.png" />
+    <None Remove="Pictures\Payments.png" />
+    <None Remove="Pictures\Report.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,6 +28,27 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pictures\BankNotes.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Card.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Contacts.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Log_out.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Options.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Overview.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Payments.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Report.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankAccounts"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="800" 
+        Title="MainWindow" Height="850" Width="1200" 
         WindowStyle="None" Background="Transparent" 
-        ResizeMode="NoResize" AllowsTransparency="True"
+        ResizeMode="CanResize" AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
 
  
@@ -44,13 +44,13 @@
             
             <Grid Grid.Row="1" Grid.ColumnSpan="3">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
-                    <ColumnDefinition Width="5*"/>
-                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="11*"/>
+                    
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
                     <RowDefinition Height="*"/>
-                    <RowDefinition Height="7*"/>
                 </Grid.RowDefinitions>
                 
                 
@@ -61,8 +61,8 @@
                     CornerRadius="15,0,0,15">
                     <Grid>
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="115"/>
                             <RowDefinition Height="*"/>
+                            <RowDefinition Height="5*"/>
                         </Grid.RowDefinitions>
 
                         <Border CornerRadius="15,0,0,0"
@@ -70,7 +70,7 @@
                             <StackPanel>
                                 <TextBlock Text="Jmeno a příjmení"
                                            Style="{StaticResource BigLabel}"
-                                           FontSize="24"
+                                           FontSize="32"
                                            TextWrapping="Wrap"
                                            TextAlignment="Left"
                                            Margin="10,5,0,0"
@@ -90,51 +90,70 @@
                         </Border>
                         <StackPanel Grid.Row="1">
                             
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackOverview"/>
+                                <Image Source="\Pictures\Overview.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Overview"/>
+                                        Content="Overview"
+                                        x:Name="Overview"
+                                        Click="Overview_Click"/>
                             </Grid>
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackCards"/>
+                                <Image Source="\Pictures\Card.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Cards"/>
+                                        Content="Cards"
+                                        x:Name="Cards"
+                                        Click="Cards_Click"/>
 
                             </Grid>
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackPayments"/>
+                                <Image Source="\Pictures\Payments.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Payments"/>
+                                        Content="Payments"
+                                        x:Name="Payments"
+                                        Click="Payments_Click"/>
 
                                 
                             </Grid>
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackReport"/>
+                                <Image Source="\Pictures\Report.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Reports"/>
+                                        Content="Reports"
+                                        x:Name="Reports"
+                                        Click="Reports_Click"/>
 
                             </Grid>
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackContacts"/>
+                                <Image Source="\Pictures\Contacts.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Contacs"/>
+                                        Content="Contacts"
+                                        x:Name="Contacts"
+                                        Click="Contacts_Click"/>
 
                             </Grid>
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackOptions"/>
+                                <Image Source="\Pictures\Options.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
-                                        Content="Options"/>
+                                        Content="Options"
+                                        x:Name="Options"
+                                        Click="Options_Click"/>
 
                             </Grid>
                             
-                            <Grid Margin="0,15,0,0">
-                                <Image Source="\Pictures\BankNotes.png"
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackLogOut"/>
+                                <Image Source="\Pictures\Log_out.png"
                                        Style="{StaticResource MenuIcon}"/>
                                 <Button Style="{StaticResource MenuButtons}" 
                                         Content="Log out"
@@ -148,7 +167,17 @@
                     
                 </Border>
                 
+
+                    <Frame x:Name="MainPageViewer" 
+                           Margin="0,0,15,15"
+                           Grid.Row="1"
+                           Grid.Column="1"
+                           NavigationUIVisibility="Hidden"
+                           HorizontalAlignment="Left"
+                           />
                 
+                
+
             </Grid>
 
         </Grid>

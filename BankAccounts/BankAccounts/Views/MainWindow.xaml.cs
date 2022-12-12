@@ -14,6 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BankAccounts.Database.Tables;
+using BankAccounts.Views;
+using BankAccounts.Pages;
 
 namespace BankAccounts
 {
@@ -30,15 +32,22 @@ namespace BankAccounts
         
         public string DispleyTextShow { set { BoxInfo.Text = value; } get { return BoxInfo.Text; } }
 
+        private double WidhtMainPageViewer { get; set; }
+
         public MainWindow(Person ChosenOne)
         {
             InitializeComponent();
+
             this.Opacity = 0;
             DoubleAnimation ShowThisWindow = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.2)));
             this.BeginAnimation(OpacityProperty, ShowThisWindow);
+
+
             Chosen = ChosenOne;
             BoxFullName.Text = Chosen.FullName;
             DispleyTextShow = "Welcome!";
+
+            
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -60,8 +69,75 @@ namespace BankAccounts
 
         private void Log_Out_Click(object sender, RoutedEventArgs e)
         {
-            DoubleAnimation ShowThisWindow = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.6)));
-            this.BeginAnimation(WidthProperty, ShowThisWindow);
+            AreYouSure check = new AreYouSure("Log out","Do you want to log out?");
+            check.ShowDialog();
+
+            if (check.Answer == true)
+            {
+                DoubleAnimation ShowThisWindow = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.6)));
+                this.BeginAnimation(WidthProperty, ShowThisWindow);
+                DoubleAnimation OpactytyThisWindow = new DoubleAnimation(0, new Duration(TimeSpan.FromSeconds(0.2)));
+                OpactytyThisWindow.BeginTime = TimeSpan.FromSeconds(0.4);
+                OpactytyThisWindow.Completed += OpenLoginAgin;
+                this.BeginAnimation(OpacityProperty, OpactytyThisWindow);
+            }
+            else
+            {
+            
+            }
+        }
+
+        private void OpenLoginAgin(object? sender, EventArgs e)
+        {
+            LoginWindow NewWindow = new LoginWindow();
+            NewWindow.Show();
+            this.Close();
+        }
+
+        private void Options_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPage<Options>();
+        }
+
+        private void Contacts_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Reports_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Payments_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Cards_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Overview_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ShowPage<T>() where T : new()
+        {
+
+            DoubleAnimation WidthPageView = new DoubleAnimation(1000, new Duration(TimeSpan.FromSeconds(0.1)))
+            { From = 0};
+
+            DoubleAnimation OpacityPageView = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.3)))
+            {From =0 };
+
+            MainPageViewer.BeginAnimation(WidthProperty, WidthPageView);
+            MainPageViewer.BeginAnimation(OpacityProperty, OpacityPageView);
+
+            
+            MainPageViewer.Content = new T();
         }
     }
 }
