@@ -8,11 +8,149 @@
         Title="MainWindow" Height="650" Width="800" 
         WindowStyle="None" Background="Transparent" 
         ResizeMode="NoResize" AllowsTransparency="True"
-        WindowStartupLocation="CenterOwner">
-    
+        WindowStartupLocation="CenterScreen">
+
+ 
     <Border Background="#222831" CornerRadius="15" 
             BorderThickness="2" BorderBrush="#393E46" 
             MouseDown="Border_MouseDown">
-        
+        <Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="35"/>
+                    <ColumnDefinition Width="35"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+              
+
+                <Button IsTabStop="False"
+                    Grid.Column="1" Content="-"
+                    Style="{StaticResource ButtonSmall}"
+                    Click="Minimaze">
+                </Button>
+
+                <Button  IsTabStop="False"
+                    Grid.Column="2" Content="x"
+                    Style="{StaticResource ButtonSmall}"
+                     Click="Cross">
+                </Button>
+
+                
+            </Grid>
+            
+            <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="5*"/>
+                    <ColumnDefinition Width="3*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="7*"/>
+                </Grid.RowDefinitions>
+                
+                
+                <!--RightMenu-->
+                <Border
+                    Grid.RowSpan="2"
+                    Background="{StaticResource MainColorLightDark}"
+                    CornerRadius="15,0,0,15">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="115"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Border CornerRadius="15,0,0,0"
+                            Background="{StaticResource MainColorBlue}">
+                            <StackPanel>
+                                <TextBlock Text="Jmeno a příjmení"
+                                           Style="{StaticResource BigLabel}"
+                                           FontSize="24"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Left"
+                                           Margin="10,5,0,0"
+                                           x:Name="BoxFullName">
+                                </TextBlock>
+                                <TextBlock Text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                                           Style="{StaticResource BigLabel}"
+                                           FontFamily="Cascadia Code SemiLight"
+                                           FontSize="15"
+                                           TextWrapping="Wrap"
+                                           TextAlignment="Left"
+                                           Margin="10,0,0,0"
+                                           x:Name="BoxInfo">
+                                </TextBlock>
+                            </StackPanel>
+                         
+                        </Border>
+                        <StackPanel Grid.Row="1">
+                            
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Overview"/>
+                            </Grid>
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Cards"/>
+
+                            </Grid>
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Payments"/>
+
+                                
+                            </Grid>
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Reports"/>
+
+                            </Grid>
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Contacs"/>
+
+                            </Grid>
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Options"/>
+
+                            </Grid>
+                            
+                            <Grid Margin="0,15,0,0">
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Log out"
+                                        x:Name="Log_Out"
+                                        Click="Log_Out_Click"/>
+                            </Grid>
+                        </StackPanel>
+                        
+
+                    </Grid>
+                    
+                </Border>
+                
+                
+            </Grid>
+
+        </Grid>
     </Border>
 </Window>

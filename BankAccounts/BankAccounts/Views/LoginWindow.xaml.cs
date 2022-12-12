@@ -25,6 +25,7 @@ namespace BankAccounts.Views
     public partial class LoginWindow : Window
     {
         public DatabaseHandler data { get; set; }
+        public Person FoundPerson = new Person();
         public LoginWindow()
         {
             InitializeComponent();
@@ -33,20 +34,27 @@ namespace BankAccounts.Views
             MyNotification.MyLoginWindow = this;
             MyNotification.MyRegisterControl = MyRegister;
 
-            //Person person = new Person()
-            //{
-            //    FirstName = "Admin",
-            //    LastName = "Admin",
-            //    Email = "Admin@Admin.cz",
-            //    Password = "123456Ab",
-            //    BirthDate = DateTime.Now,
-            //    Balance = 9999999,
-            //    IdAccount = "A1"
-            //};
+            
 
             data = new DatabaseHandler("BankAccounts");
 
-            //data.InsertValue<Person>(person);
+            var _AddADmin = data.Load<Person>();
+
+            if (_AddADmin.FirstOrDefault(x => x.IdAccount == "A1") == null)
+            {
+                Person person = new Person()
+                {
+                    FirstName = "Admin",
+                    LastName = "Admin",
+                    Email = "Admin@Admin.cz",
+                    Password = "123456Ab",
+                    BirthDate = DateTime.Now,
+                    Balance = 9999999,
+                    IdAccount = "A1"
+                };
+                data.InsertValue<Person>(person);
+            }
+
 
             MyLogin.MyDatabase = data;
             MyRegister.MyDatabase = data;
@@ -66,7 +74,7 @@ namespace BankAccounts.Views
         {
             
             var x = data.Load<Person>();
-            Debug.WriteLine(x[1].UserName + " - " + username);
+            
             var nasel = x.FirstOrDefault(x => (x.UserName == username) && (x.Password == password));
             if (nasel != null)
             {
@@ -80,7 +88,7 @@ namespace BankAccounts.Views
                 this.BeginAnimation(OpacityProperty, opactizthis);
                 MyLogin.BeginAnimation(HeightProperty, heightani);
 
-
+                FoundPerson = nasel;
 
             }
             else
@@ -93,7 +101,7 @@ namespace BankAccounts.Views
 
         private void RemoveLogin(object? sender, EventArgs e)
         {
-            MainWindow mainWindow = new MainWindow();
+            MainWindow mainWindow = new MainWindow(FoundPerson);
             mainWindow.Show();
             this.Close();
         }

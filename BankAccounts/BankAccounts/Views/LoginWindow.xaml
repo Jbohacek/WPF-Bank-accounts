@@ -9,7 +9,7 @@
         Title="LoginWindow" Height="650" Width="450"
         WindowStyle="None" Background="Transparent" 
         ResizeMode="NoResize" AllowsTransparency="True"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterScreen">
 
     <Border Background="{StaticResource MainColorDark}" CornerRadius="15" 
             BorderThickness="2" BorderBrush="{StaticResource MainColorLightDark}" 
