@@ -1,18 +1,18 @@
-﻿<Page x:Class="BankAccounts.Pages.Options"
+﻿<Page x:Class="BankAccounts.Pages.Personal"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BankAccounts.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="800" d:DesignWidth="1000"
-      Title="Options">
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="Personal">
 
     <Border Background="{StaticResource MainColorDark}" 
             CornerRadius="0,20,0,0"
             BorderBrush="{StaticResource MainColorLightDark}"
             BorderThickness="0,3,3,0">
-        
+
         <Grid>
 
             <!--top-->
@@ -26,7 +26,7 @@
                         CornerRadius="0,13,0,0"/>
 
                 <TextBlock Style="{StaticResource BigLabel}" 
-                           Text="Options"
+                           Text="Personal"
                            FontSize="50"
                            VerticalAlignment="Bottom"
                            Margin="30,0,0,5"/>
@@ -44,10 +44,17 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Margin="15" Grid.Row="1">
-                    
+                    <TextBlock Style="{StaticResource BigLabel}"
+                               Text="Personal info"
+                               Margin="0,0,0,15"/>
+
+                    <TextBlock Style="{StaticResource LabelLogin}"
+                               Text="First name:"/>
+                    <TextBox Style="{StaticResource BoxLogin}"
+                             Margin="0,0,50,0"/>
                 </StackPanel>
             </Grid>
-            
+
         </Grid>
     </Border>
 </Page>

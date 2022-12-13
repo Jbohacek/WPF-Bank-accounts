@@ -138,8 +138,20 @@
                                         Content="Contacts"
                                         x:Name="Contacts"
                                         Click="Contacts_Click"/>
-
                             </Grid>
+                            
+                            <Grid Margin="0,20,0,0">
+                                <Border CornerRadius="8" Background="Transparent" x:Name="BackPersonal"/>
+                                <Image Source="\Pictures\BankNotes.png"
+                                       Style="{StaticResource MenuIcon}"/>
+                                <Button Style="{StaticResource MenuButtons}" 
+                                        Content="Personal"
+                                        x:Name="Personal"
+                                        Click="Personal_Click"/>
+                            </Grid>
+                            
+
+                         
                             <Grid Margin="0,20,0,0">
                                 <Border CornerRadius="8" Background="Transparent" x:Name="BackOptions"/>
                                 <Image Source="\Pictures\Options.png"
@@ -160,6 +172,8 @@
                                         x:Name="Log_Out"
                                         Click="Log_Out_Click"/>
                             </Grid>
+                            
+                           
                         </StackPanel>
                         
 
@@ -169,7 +183,7 @@
                 
 
                     <Frame x:Name="MainPageViewer" 
-                           Margin="0,0,15,15"
+                           Margin="0,0,0,0"
                            Grid.Row="1"
                            Grid.Column="1"
                            NavigationUIVisibility="Hidden"

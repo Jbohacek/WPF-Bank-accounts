@@ -139,5 +139,10 @@ namespace BankAccounts
             
             MainPageViewer.Content = new T();
         }
+
+        private void Personal_Click(object sender, RoutedEventArgs e)
+        {
+            ShowPage<Personal>();
+        }
     }
 }
