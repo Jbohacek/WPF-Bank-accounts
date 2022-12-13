@@ -28,7 +28,8 @@ namespace BankAccounts
 
     public partial class MainWindow : Window
     {
-        public Person Chosen { get; set; }
+        private static Person? theChosen;
+        public static Person Chosen { get { if (theChosen == null) return new Person(); else return theChosen;  } set { theChosen = value; } }
         
         public string DispleyTextShow { set { BoxInfo.Text = value; } get { return BoxInfo.Text; } }
 

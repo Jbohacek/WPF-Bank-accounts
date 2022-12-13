@@ -158,5 +158,32 @@
             </Style.Triggers>
         </Style>
 
+        <Style TargetType="Button" x:Key="SaveButton" BasedOn="{StaticResource MenuButtons}">
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                Duration="0:0:0.1"
+                                                To="#80bfbcbb"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="35" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                    <Trigger.ExitActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <ColorAnimation Storyboard.TargetProperty="(Button.Background).(SolidColorBrush.Color)"
+                                                Duration="0:0:0.1"
+                                                To="Transparent"/>
+                                <DoubleAnimation Storyboard.TargetProperty="FontSize" To="35" Duration="0:0:0.1"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.ExitActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>

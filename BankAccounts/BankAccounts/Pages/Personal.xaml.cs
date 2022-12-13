@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankAccounts.Database.Tables;
 
 namespace BankAccounts.Pages
 {
@@ -23,6 +24,21 @@ namespace BankAccounts.Pages
         public Personal()
         {
             InitializeComponent();
+            this.DataContext = MainWindow.Chosen;
+        }
+
+        private void DatePicker_Loaded(object sender, RoutedEventArgs e)
+        {
+            var textbox1 = (TextBox)DatePicker.Template.FindName("PART_TextBox", DatePicker);
+            textbox1.Background = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#00ADB5"));
+            textbox1.CaretBrush = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#EEEEEE"));
+        }
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            DatabaseHandler NewDatabaseHandled = new DatabaseHandler("BankAccounts");
+
+            NewDatabaseHandled.UpdateByObject<Person>(MainWindow.Chosen);
         }
     }
 }
