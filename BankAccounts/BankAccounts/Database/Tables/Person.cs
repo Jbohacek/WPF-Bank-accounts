@@ -26,6 +26,30 @@ namespace BankAccounts.Database.Tables
         [Ignore]
         public string UserName { get { return (LastName.ToLower() + FirstName.ToLower()); } }
 
+        [Ignore]
+        public string GetBalance { get 
+            {
+
+                var pok = Balance.ToString().ToCharArray();
+                Array.Reverse(pok);
+
+                string konec = "";
+                for (int i = 0; i < Balance.ToString().Length; i++)
+                {
+                    konec += pok[i];
+                    if (i % 3 == 2 && i != Balance.ToString().Length)
+                    {
+                        konec += " ";
+                    }
+                }
+
+                var kon = konec.ToCharArray();
+                Array.Reverse(kon);
+
+                return new string(kon) + " CZK"; 
+            } 
+        }
+
         [NotNull]
         public double Balance { get; set; }
 

@@ -68,7 +68,7 @@
                         <Border CornerRadius="15,0,0,0"
                             Background="{StaticResource MainColorBlue}">
                             <StackPanel>
-                                <TextBlock Text="Jmeno a příjmení"
+                                <TextBlock Text="{Binding Path=FullName, Mode=OneWay}"
                                            Style="{StaticResource BigLabel}"
                                            FontSize="32"
                                            TextWrapping="Wrap"
@@ -76,7 +76,7 @@
                                            Margin="10,5,0,0"
                                            x:Name="BoxFullName">
                                 </TextBlock>
-                                <TextBlock Text="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+                                <TextBlock Text="{Binding Path=GetBalance, Mode=OneWay}"
                                            Style="{StaticResource BigLabel}"
                                            FontFamily="Cascadia Code SemiLight"
                                            FontSize="15"

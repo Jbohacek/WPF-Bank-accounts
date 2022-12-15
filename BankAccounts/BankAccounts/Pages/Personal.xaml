@@ -43,7 +43,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="15" Grid.Row="1">
+                <StackPanel Margin="30,30,0,0" Grid.Row="1">
                     <TextBlock Style="{StaticResource BigLabel}"
                                Text="Personal info"
                                Margin="0,0,0,15"
@@ -67,6 +67,10 @@
                              Margin="0,0,50,20"
                              Text="{Binding Path=Email, Mode=TwoWay}"/>
 
+                    <TextBox Style="{StaticResource BoxLogin}"
+                             Margin="0,0,50,20"
+                             Text="{Binding Path=Balance, Mode=TwoWay}"/>
+                    
                     <TextBlock Style="{StaticResource LabelLogin}"
                                Text="Email:"/>
                     <DatePicker 

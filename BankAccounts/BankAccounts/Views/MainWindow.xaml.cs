@@ -45,9 +45,12 @@ namespace BankAccounts
 
 
             Chosen = ChosenOne;
-            BoxFullName.Text = Chosen.FullName;
-            DispleyTextShow = "Welcome!";
+            //BoxFullName.Text = Chosen.FullName;
+            //DispleyTextShow = "Welcome!";
 
+            this.DataContext = Chosen;
+
+            ShowPage<Overview>();
             
         }
 
@@ -65,10 +68,15 @@ namespace BankAccounts
 
         private void Cross(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            ShowLogout();
         }
 
         private void Log_Out_Click(object sender, RoutedEventArgs e)
+        {
+            ShowLogout();
+        }
+
+        private void ShowLogout()
         {
             AreYouSure check = new AreYouSure("Log out","Do you want to log out?");
             check.ShowDialog();
@@ -87,6 +95,7 @@ namespace BankAccounts
             
             }
         }
+
 
         private void OpenLoginAgin(object? sender, EventArgs e)
         {
@@ -122,7 +131,7 @@ namespace BankAccounts
 
         private void Overview_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowPage<Overview>();
         }
 
         private void ShowPage<T>() where T : new()
