@@ -121,7 +121,7 @@ namespace BankAccounts
 
         private void Payments_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowPage<Payments>();
         }
 
         private void Cards_Click(object sender, RoutedEventArgs e)

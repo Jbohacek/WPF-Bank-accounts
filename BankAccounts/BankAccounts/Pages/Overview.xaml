@@ -4,9 +4,11 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BankAccounts.Pages"
+      
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="Overview">
+    
 
     <Border Background="{StaticResource MainColorDark}" 
             CornerRadius="0,20,0,0"
@@ -76,12 +78,21 @@
                                    Margin="15,15,0,0"/>
                     </Grid>
                 </Border>
-                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="2"
+                <Border Grid.Row="1" Grid.Column="1" Grid.RowSpan="3" Grid.ColumnSpan="2"
                         Background="{StaticResource MainColorLightDark}"
                         CornerRadius="35"
-                        Margin="0,35,0,0">
-                    <Grid Margin="10">
-                        <TextBlock Text="Last purchases"/>
+                        Margin="150,35,10,10">
+                    <Grid Margin="13">
+                        <TextBlock Text="Last purchases"
+                                   Foreground="{StaticResource MainColorWhite}"
+                                   FontSize="24" 
+                                   HorizontalAlignment="Center"
+                                   Style="{StaticResource LabelLogin}"
+                                    />
+                        <ListView Margin="0,40,0,0"
+                                  Background="Transparent">
+                            
+                        </ListView>
 
 
                     </Grid>
