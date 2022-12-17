@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BankAccounts.Database.Tables;
+using SQLite;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,6 +26,20 @@ namespace BankAccounts.Pages
         {
             InitializeComponent();
             this.DataContext = MainWindow.Chosen;
+
+            DatabaseHandler data = new DatabaseHandler("BankAccounts");
+
+            using (SQLiteConnection connection = new SQLiteConnection(data.Cesta))
+            {
+                //var x = connection.Query<Person>("SELECT *\r\nFROM Clients c \r\ninner join Transactions t on IdClient = c.id\r\nwhere c.Id = '1'",null);
+
+                SQLiteCommand komand = new SQLiteCommand(connection);
+                komand.CommandText = $"SELECT *\r\nFROM Clients c \r\ninner join Transactions t on IdClient = c.id\r\nwhere c.Id = '{MainWindow.Chosen.Id}'";
+
+                var x = komand.ExecuteQuery<Transaction>();
+
+                LastPurchesList.ItemsSource = x;
+            }
         }
     }
 }

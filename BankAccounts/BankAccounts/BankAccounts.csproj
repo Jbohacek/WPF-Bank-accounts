@@ -11,6 +11,7 @@
     <None Remove="Pictures\BackArrow.png" />
     <None Remove="Pictures\BankNotes.png" />
     <None Remove="Pictures\Card.png" />
+    <None Remove="Pictures\Check.png" />
     <None Remove="Pictures\Contacts.png" />
     <None Remove="Pictures\Log_out.png" />
     <None Remove="Pictures\Options.png" />
@@ -32,6 +33,9 @@
     </Resource>
     <Resource Include="Pictures\Card.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Check.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pictures\Contacts.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

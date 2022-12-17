@@ -6,7 +6,12 @@
              xmlns:local="clr-namespace:BankAccounts.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="50" d:DesignWidth="300">
-    <Border>
-        
+    <Border Background="#56823d" CornerRadius="8">
+        <StackPanel Orientation="Horizontal" Margin="3" HorizontalAlignment="Center">
+            <Image Source="\Pictures\Check.png"/>
+            <TextBlock Style="{StaticResource LabelLogin}" Text="Saved" VerticalAlignment="Center" FontSize="40" FontFamily="Bahnschrift SemiBold"/>
+
+
+        </StackPanel>
     </Border>
 </UserControl>

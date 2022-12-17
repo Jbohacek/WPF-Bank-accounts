@@ -35,9 +35,10 @@
                            />
                 <TextBlock Style="{StaticResource BigLabel}" 
                            Text="{Binding Path=FirstName, Mode=OneWay}"
-                           FontSize="50"
+                           FontSize="55"
                            VerticalAlignment="Bottom"
-                           Margin="400,0,0,5"
+                           Margin="400,0,0,2"
+                           Foreground="#F08A5D"
                            />
 
             </Grid>
@@ -90,7 +91,9 @@
                                    Style="{StaticResource LabelLogin}"
                                     />
                         <ListView Margin="0,40,0,0"
-                                  Background="Transparent">
+                                  Background="Transparent"
+                                  x:Name="LastPurchesList"
+                                  Foreground="{StaticResource MainColorWhite}">
                             
                         </ListView>
 

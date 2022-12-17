@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BankAccounts"
+        xmlns:uc="clr-namespace:BankAccounts.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="850" Width="1200" 
         WindowStyle="None" Background="Transparent" 
@@ -189,11 +190,17 @@
                            NavigationUIVisibility="Hidden"
                            HorizontalAlignment="Left"
                            />
-                
+
                 
 
             </Grid>
-
+            <uc:SavedControl
+                Width="300"
+                Height="50" 
+                VerticalAlignment="Bottom"
+                Margin="0,0,0,-50"
+                x:Name="SaveCheckShow"
+                />
         </Grid>
     </Border>
 </Window>

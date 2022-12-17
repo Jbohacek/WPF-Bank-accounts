@@ -21,10 +21,13 @@ namespace BankAccounts.Pages
     /// </summary>
     public partial class Personal : Page
     {
-        public Personal()
+        public MainWindow ParentOf { get; set; }
+
+        public Personal(MainWindow _ParentOf)
         {
             InitializeComponent();
             this.DataContext = MainWindow.Chosen;
+            ParentOf = _ParentOf;
         }
 
         private void DatePicker_Loaded(object sender, RoutedEventArgs e)
@@ -39,6 +42,7 @@ namespace BankAccounts.Pages
             DatabaseHandler NewDatabaseHandled = new DatabaseHandler("BankAccounts");
 
             NewDatabaseHandled.UpdateByObject<Person>(MainWindow.Chosen);
+            ParentOf.ShowSave();
         }
     }
 }

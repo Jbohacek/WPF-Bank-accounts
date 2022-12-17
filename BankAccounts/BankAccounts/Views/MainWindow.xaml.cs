@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using BankAccounts.Database.Tables;
 using BankAccounts.Views;
 using BankAccounts.Pages;
+using BankAccounts.Controls;
 
 namespace BankAccounts
 {
@@ -23,14 +24,14 @@ namespace BankAccounts
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     /// 
-    
-  
+
+
 
     public partial class MainWindow : Window
     {
         private static Person? theChosen;
-        public static Person Chosen { get { if (theChosen == null) return new Person(); else return theChosen;  } set { theChosen = value; } }
-        
+        public static Person Chosen { get { if (theChosen == null) return new Person(); else return theChosen; } set { theChosen = value; } }
+
         public string DispleyTextShow { set { BoxInfo.Text = value; } get { return BoxInfo.Text; } }
 
         private double WidhtMainPageViewer { get; set; }
@@ -50,13 +51,14 @@ namespace BankAccounts
 
             this.DataContext = Chosen;
 
-            ShowPage<Overview>();
-            
+            ShowPage();
+            MainPageViewer.Content = new Overview();
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if(e.LeftButton== MouseButtonState.Pressed)
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
             }
@@ -78,7 +80,7 @@ namespace BankAccounts
 
         private void ShowLogout()
         {
-            AreYouSure check = new AreYouSure("Log out","Do you want to log out?");
+            AreYouSure check = new AreYouSure("Log out", "Do you want to log out?");
             check.ShowDialog();
 
             if (check.Answer == true)
@@ -92,7 +94,7 @@ namespace BankAccounts
             }
             else
             {
-            
+
             }
         }
 
@@ -106,7 +108,8 @@ namespace BankAccounts
 
         private void Options_Click(object sender, RoutedEventArgs e)
         {
-            ShowPage<Options>();
+            ShowPage();
+            MainPageViewer.Content = new Options();
         }
 
         private void Contacts_Click(object sender, RoutedEventArgs e)
@@ -121,7 +124,8 @@ namespace BankAccounts
 
         private void Payments_Click(object sender, RoutedEventArgs e)
         {
-            ShowPage<Payments>();
+            ShowPage();
+            MainPageViewer.Content = new Payments();
         }
 
         private void Cards_Click(object sender, RoutedEventArgs e)
@@ -131,28 +135,64 @@ namespace BankAccounts
 
         private void Overview_Click(object sender, RoutedEventArgs e)
         {
-            ShowPage<Overview>();
+            ShowPage();
+            MainPageViewer.Content = new Overview();
         }
 
-        private void ShowPage<T>() where T : new()
+        private void ShowPage()
         {
 
             DoubleAnimation WidthPageView = new DoubleAnimation(1000, new Duration(TimeSpan.FromSeconds(0.1)))
-            { From = 0};
+            { From = 0 };
 
             DoubleAnimation OpacityPageView = new DoubleAnimation(1, new Duration(TimeSpan.FromSeconds(0.3)))
-            {From =0 };
+            { From = 0 };
 
             MainPageViewer.BeginAnimation(WidthProperty, WidthPageView);
             MainPageViewer.BeginAnimation(OpacityProperty, OpacityPageView);
 
-            
-            MainPageViewer.Content = new T();
+
+            //MainPageViewer.Content = new T();
         }
+
+        
+
+        int HowFarWillGo = 20;
+        public void ShowSave()
+        {
+            SaveCheckShow.Visibility = Visibility.Visible;
+            ThicknessAnimation MarginSaveUp = new ThicknessAnimation(new Thickness(0, 0, 0, HowFarWillGo), new Duration(TimeSpan.FromSeconds(0.5)))
+            {
+                From = new Thickness(0, 0, 0, -60),
+
+            };
+            MarginSaveUp.Completed += MarginSaveUp_Completed;
+
+
+            SaveCheckShow.BeginAnimation(MarginProperty, MarginSaveUp);
+
+        }
+        private void MarginSaveUp_Completed(object? sender, EventArgs e)
+        {
+            ThicknessAnimation MarginSaveDown = new ThicknessAnimation(new Thickness(0, 0, 0, -60), new Duration(TimeSpan.FromSeconds(0.5)))
+            {
+                From = new Thickness(0, 0, 0, HowFarWillGo),
+                BeginTime = TimeSpan.FromSeconds(1)
+            };
+            MarginSaveDown.Completed += MarginSaveDown_Completed;
+
+            SaveCheckShow.BeginAnimation(MarginProperty, MarginSaveDown);
+        }
+        private void MarginSaveDown_Completed(object? sender, EventArgs e)
+        {
+            SaveCheckShow.Visibility = Visibility.Hidden;
+        }
+        
 
         private void Personal_Click(object sender, RoutedEventArgs e)
         {
-            ShowPage<Personal>();
+            ShowPage();
+            MainPageViewer.Content = new Personal(this);
         }
     }
 }

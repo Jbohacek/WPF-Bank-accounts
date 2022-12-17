@@ -32,7 +32,7 @@ namespace BankAccounts.Pages
 
             Transaction novy = new Transaction()
             {
-                IdClient = 1,
+                IdClient = MainWindow.Chosen.Id,
                 IdClientTO = null,
                 Payment = Convert.ToDouble(PayAmount.Text),
                 PaymentDay = DateTime.Now,

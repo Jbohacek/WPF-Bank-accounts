@@ -23,6 +23,11 @@ namespace BankAccounts.Database.Tables
         public double Payment { get; set; }
 
         public DateTime PaymentDay { get; set; }
-       
+
+
+        public override string ToString()
+        {
+            return $"{id} - user : {IdClient} - {Payment} - {PaymentDay.Day}";
+        }
     }
 }
