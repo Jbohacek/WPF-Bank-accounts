@@ -43,10 +43,24 @@ namespace BankAccounts.Database.Tables
                     }
                 }
 
+
+
                 var kon = konec.ToCharArray();
                 Array.Reverse(kon);
 
-                return new string(kon) + " CZK"; 
+                string Finalni = new string(kon);
+
+                if (Finalni.Substring(0, 1) == " ")
+                {
+                    Finalni = Finalni.Substring(1);
+                }
+
+                if (Finalni.Substring(0, 1) == "-" && Finalni.Substring(1, 1) != " ")
+                {
+                    Finalni = Finalni.Insert(1, " ");
+                }
+
+                return Finalni + " CZK"; 
             } 
         }
 

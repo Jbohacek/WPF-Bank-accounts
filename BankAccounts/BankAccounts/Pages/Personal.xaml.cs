@@ -43,6 +43,7 @@ namespace BankAccounts.Pages
 
             NewDatabaseHandled.UpdateByObject<Person>(MainWindow.Chosen);
             ParentOf.ShowSave();
+            ParentOf.Reload();
         }
     }
 }

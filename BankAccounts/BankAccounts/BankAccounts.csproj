@@ -8,9 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Pictures\Arrow.png" />
     <None Remove="Pictures\BackArrow.png" />
     <None Remove="Pictures\BankNotes.png" />
     <None Remove="Pictures\Card.png" />
+    <None Remove="Pictures\Category\Clothing.png" />
+    <None Remove="Pictures\Category\Electronics.png" />
+    <None Remove="Pictures\Category\Food.png" />
+    <None Remove="Pictures\Category\Games.png" />
+    <None Remove="Pictures\Category\Medical.png" />
+    <None Remove="Pictures\Category\Other.png" />
+    <None Remove="Pictures\Category\Toys.png" />
     <None Remove="Pictures\Check.png" />
     <None Remove="Pictures\Contacts.png" />
     <None Remove="Pictures\Log_out.png" />
@@ -25,6 +33,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Pictures\Arrow.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pictures\BackArrow.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -34,8 +45,29 @@
     <Resource Include="Pictures\Card.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Pictures\Category\Clothing.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Electronics.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Food.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Games.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Medical.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Other.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\Category\Toys.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pictures\Check.png">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Pictures\Contacts.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

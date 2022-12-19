@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BankAccounts.Database;
 using BankAccounts.Database.Tables;
 
 namespace BankAccounts.Pages
@@ -21,14 +22,15 @@ namespace BankAccounts.Pages
     /// </summary>
     public partial class Payments : Page
     {
-        public Payments()
+        public MainWindow ParentOf { get; set; }
+        public Payments(MainWindow _ParentOf)
         {
             InitializeComponent();
+            ParentOf = _ParentOf;
         }
 
         private void GetPayed_Click(object sender, RoutedEventArgs e)
         {
-            DatabaseHandler handler = new DatabaseHandler("BankAccounts");
 
             Transaction novy = new Transaction()
             {
@@ -36,10 +38,13 @@ namespace BankAccounts.Pages
                 IdClientTO = null,
                 Payment = Convert.ToDouble(PayAmount.Text),
                 PaymentDay = DateTime.Now,
-
+                CategoryPayment = "Food",
+                TypePayment = "Card payment"
             };
 
-            handler.InsertValue<Transaction>(novy);
+            TransactionHandler.AddTransaction(MainWindow.Chosen, novy);
+
+            ParentOf.Reload();
         }
     }
 }

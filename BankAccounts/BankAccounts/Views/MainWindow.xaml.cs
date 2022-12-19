@@ -17,6 +17,7 @@ using BankAccounts.Database.Tables;
 using BankAccounts.Views;
 using BankAccounts.Pages;
 using BankAccounts.Controls;
+using System.Diagnostics;
 
 namespace BankAccounts
 {
@@ -54,10 +55,17 @@ namespace BankAccounts
             ShowPage();
             MainPageViewer.Content = new Overview();
 
-        }
+            Reload();
 
+        }
+        public void Reload()
+        {
+            BoxFullName.Text = Chosen.FullName;
+            BoxInfo.Text = Chosen.GetBalance;
+        }
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
+         
             if (e.LeftButton == MouseButtonState.Pressed)
             {
                 DragMove();
@@ -125,7 +133,7 @@ namespace BankAccounts
         private void Payments_Click(object sender, RoutedEventArgs e)
         {
             ShowPage();
-            MainPageViewer.Content = new Payments();
+            MainPageViewer.Content = new Payments(this);
         }
 
         private void Cards_Click(object sender, RoutedEventArgs e)
@@ -158,10 +166,13 @@ namespace BankAccounts
         
 
         int HowFarWillGo = 20;
+        bool CanShowSave = true;
         public void ShowSave()
         {
+            if (!CanShowSave) return;
+            CanShowSave= false;
             SaveCheckShow.Visibility = Visibility.Visible;
-            ThicknessAnimation MarginSaveUp = new ThicknessAnimation(new Thickness(0, 0, 0, HowFarWillGo), new Duration(TimeSpan.FromSeconds(0.5)))
+            ThicknessAnimation MarginSaveUp = new ThicknessAnimation(new Thickness(0, 0, 0, HowFarWillGo), new Duration(TimeSpan.FromSeconds(0.2)))
             {
                 From = new Thickness(0, 0, 0, -60),
 
@@ -174,7 +185,7 @@ namespace BankAccounts
         }
         private void MarginSaveUp_Completed(object? sender, EventArgs e)
         {
-            ThicknessAnimation MarginSaveDown = new ThicknessAnimation(new Thickness(0, 0, 0, -60), new Duration(TimeSpan.FromSeconds(0.5)))
+            ThicknessAnimation MarginSaveDown = new ThicknessAnimation(new Thickness(0, 0, 0, -60), new Duration(TimeSpan.FromSeconds(0.2)))
             {
                 From = new Thickness(0, 0, 0, HowFarWillGo),
                 BeginTime = TimeSpan.FromSeconds(1)
@@ -186,6 +197,7 @@ namespace BankAccounts
         private void MarginSaveDown_Completed(object? sender, EventArgs e)
         {
             SaveCheckShow.Visibility = Visibility.Hidden;
+            CanShowSave = true;
         }
         
 

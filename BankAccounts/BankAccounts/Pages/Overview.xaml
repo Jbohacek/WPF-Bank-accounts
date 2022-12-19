@@ -4,11 +4,45 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BankAccounts.Pages"
+      xmlns:uc="clr-namespace:BankAccounts.Controls"
       
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1000"
       Title="Overview">
-    
+    <Page.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Width="80" Height="24" CornerRadius="6" Background="{TemplateBinding Background}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Background" Value="{StaticResource MainColorBlue}"/>
+            <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"/>
+            <Setter Property="FontFamily" Value="Bahnschrift SemiBold"/>
+            <Setter Property="Cursor" Value="Hand"/>
+
+
+        </Style>
+
+        <SolidColorBrush Color="#1ed760" x:Key="Income"/>
+
+        <Style TargetType="TextBlock" x:Key="Datum">
+            <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,8,0,0"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="FontFamily" Value="Bahnschrift SemiBold"/>
+        </Style>
+
+        
+    </Page.Resources>
 
     <Border Background="{StaticResource MainColorDark}" 
             CornerRadius="0,20,0,0"
@@ -62,16 +96,18 @@
                 <Border Grid.Row="1" 
                         Background="{StaticResource MainColorLightDark}"
                         CornerRadius="35"
-                        Margin="25,35,105,25">
+                        Margin="15,35,105,25">
                     <Grid>
-                        <TextBlock Text="{Binding Path=GetBalance, Mode=OneWay}"
+                        <TextBlock Text=""
                                    Foreground="{StaticResource MainColorBlue}"
                                    Margin="15"
                                    FontSize="50"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
-                                   FontFamily="Cascadia Code SemiBold"/>
+                                   FontFamily="Cascadia Code SemiBold"
+                                   x:Name="BalanceView"
+                                   />
                         <TextBlock Text="Balance:"
                                    Foreground="{StaticResource MainColorWhite}"
                                    FontSize="28"
@@ -84,22 +120,225 @@
                         CornerRadius="35"
                         Margin="150,35,10,10">
                     <Grid Margin="13">
+
                         <TextBlock Text="Last purchases"
                                    Foreground="{StaticResource MainColorWhite}"
                                    FontSize="24" 
                                    HorizontalAlignment="Center"
                                    Style="{StaticResource LabelLogin}"
                                     />
-                        <ListView Margin="0,40,0,0"
+                        <StackPanel Height="40" 
+                                    VerticalAlignment="Top" 
+                                    Orientation="Horizontal" 
+                                    Margin="0,30,0,0"
+                                    HorizontalAlignment="Center"
+                                    >
+                            <Button Content="Date" x:Name="SortDate" Click="SortDate_Click"/>
+                            <Button Content="Amount" x:Name="SortAmount" Click="SortAmount_Click"/>
+                            <Button Content="ID" x:Name="SortID" Click="SortID_Click" Background="#006368"/>
+
+                            <CheckBox
+                                x:Name="SortBy"
+                                RenderTransformOrigin="0.5 0.5"
+                                Checked="SortBy_Checked"
+                                Unchecked="SortBy_Checked">
+                                <CheckBox.Template>
+                                    <ControlTemplate TargetType="CheckBox">
+                                        <Grid Background="Transparent">
+                                            <Image Source="\Pictures\Arrow.png" RenderTransformOrigin="0.5,0.5"/>
+                                        </Grid>
+                                    </ControlTemplate>
+                                </CheckBox.Template>
+
+                                <CheckBox.RenderTransform>
+                                    <RotateTransform Angle="90"/>
+                                </CheckBox.RenderTransform>
+
+                                <CheckBox.Style>
+                                    <Style TargetType="CheckBox">
+                                        <Style.Triggers>
+                                            <EventTrigger RoutedEvent="Checked">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation To="270" Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                            <EventTrigger RoutedEvent="Unchecked">
+                                                <BeginStoryboard>
+                                                    <Storyboard>
+                                                        <DoubleAnimation To="90" Storyboard.TargetProperty="RenderTransform.(RotateTransform.Angle)" Duration="0:0:0.1"/>
+                                                    </Storyboard>
+                                                </BeginStoryboard>
+                                            </EventTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </CheckBox.Style>
+
+                            </CheckBox>
+
+
+                        </StackPanel>
+                        <ListView Margin="0,70,0,0"
                                   Background="Transparent"
                                   x:Name="LastPurchesList"
-                                  Foreground="{StaticResource MainColorWhite}">
-                            
+                                  Foreground="{StaticResource MainColorWhite}"
+                                  Width="300"
+                                  BorderThickness="0"
+                                  ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                                  
+                                  >
+
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="{x:Type ListViewItem}">
+                                    <Setter Property="Focusable" Value="False"/>
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Transparent" />
+                                            <Setter Property="BorderThickness" Value="0" />
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <uc:TransactionControl Transakce="{Binding}"/>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
                         </ListView>
 
 
                     </Grid>
+
                     
+                </Border>
+
+
+                <Border 
+                    Grid.Row="2" 
+                    Grid.RowSpan="2"
+                    Grid.ColumnSpan="2"
+                    Background="{StaticResource MainColorLightDark}"
+                    CornerRadius="35"
+                    Margin="15,15,120,0">
+                    <Grid Margin="15,15,15,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="7*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+
+                        <Rectangle 
+                            Fill="{StaticResource MainColorWhite}" 
+                            Height="5"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="9"
+                            VerticalAlignment="Top"/>
+                        <Rectangle 
+                            Fill="{StaticResource MainColorWhite}" 
+                            Height="2"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="9"
+                            VerticalAlignment="Bottom"
+                            Opacity="0.1"/>
+                        <Rectangle 
+                            Fill="{StaticResource MainColorWhite}" 
+                            Height="2"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="9"
+                            VerticalAlignment="Top"
+                            Opacity="0.1"/>
+
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="0" Text="Datum 7" x:Name="Datum7"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="1" Text="Datum 6" x:Name="Datum6"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="2" Text="Datum 5" x:Name="Datum5"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="3" Text="Datum 4" x:Name="Datum4"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="4" Text="Datum 3" x:Name="Datum3"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="5" Text="Datum 2" x:Name="Datum2"/>
+                        <TextBlock Style="{StaticResource Datum}" Grid.Row="2" Grid.Column="6" Text="Datum 1" x:Name="Datum1"/>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="0">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome7"/>
+                            <Rectangle Fill="{StaticResource Income}" Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome7"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="0">
+                            <Rectangle Fill="{StaticResource MainColorRed}"  Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome7"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome7"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="1">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome6"/>
+                            <Rectangle Fill="{StaticResource Income}" Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome6"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="1">
+                            <Rectangle Fill="{StaticResource MainColorRed}"  Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome6"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome6"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="2">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome5"/>
+                            <Rectangle Fill="{StaticResource Income}"  Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome5"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="2">
+                            <Rectangle Fill="{StaticResource MainColorRed}" Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome5"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome5"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="3">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome4"/>
+                            <Rectangle Fill="{StaticResource Income}"  Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome4"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="3">
+                            <Rectangle Fill="{StaticResource MainColorRed}" Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome4"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome4"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="4">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome3"/>
+                            <Rectangle Fill="{StaticResource Income}"  Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome3"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="4">
+                            <Rectangle Fill="{StaticResource MainColorRed}" Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome3"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome3"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="5">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome2"/>
+                            <Rectangle Fill="{StaticResource Income}"  Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome2"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="5">
+                            <Rectangle Fill="{StaticResource MainColorRed}" Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome2"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome2"/>
+                        </StackPanel>
+
+                        <StackPanel VerticalAlignment="Bottom" Grid.Column="6">
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="TextIncome1"/>
+                            <Rectangle Fill="{StaticResource Income}"  Height="170" Margin="15,0,15,5" MaxHeight="170" x:Name="BoxIncome1"/>
+                        </StackPanel>
+                        <StackPanel VerticalAlignment="Top" Grid.Row="1" Grid.Column="6">
+                            <Rectangle Fill="{StaticResource MainColorRed}" Height="170" Margin="15,5,15,0" MaxHeight="170" x:Name="TextDeIncome1"/>
+                            <TextBlock Style="{StaticResource LabelLogin}" Text="456 CZK" TextAlignment="Center" FontSize="15" x:Name="BoxDeIncome1"/>
+                        </StackPanel>
+
+                        <Button Content="Date" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="0,0,120,0" x:Name="SortTableByDate" Click="SortTableByDate_Click"/>
+                        <Button Content="ID" Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="3" Margin="120,0,0,0" Background="#006368" x:Name="SortTableByID" Click="SortTableByID_Click" Cursor="Arrow"/>
+
+
+                    </Grid>
                 </Border>
             </Grid>
 
