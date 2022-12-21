@@ -127,7 +127,8 @@ namespace BankAccounts
 
         private void Reports_Click(object sender, RoutedEventArgs e)
         {
-
+            ShowPage();
+            MainPageViewer.Content = new Reports();
         }
 
         private void Payments_Click(object sender, RoutedEventArgs e)
