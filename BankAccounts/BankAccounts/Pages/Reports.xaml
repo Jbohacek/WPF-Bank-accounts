@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BankAccounts.Pages"
+      xmlns:uc="clr-namespace:BankAccounts.Controls"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Reports">
@@ -43,10 +44,39 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
                 
                 
-                <DataGrid
+                <Border Grid.Row="2" Grid.ColumnSpan="2" Background="{StaticResource MainColorLightDark}" CornerRadius="15" Margin="5">
+                    <ListView Margin="10" Background="{StaticResource MainColorLightDark}" BorderThickness="0" x:Name="DataShower">
+                        
+                        
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <uc:ReportDataRow Transakce="{Binding}"/>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                        
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Focusable" Value="False"/>
+                                <Setter Property="Padding" Value="0"/>
+                                <Setter Property="Margin" Value="0"/>
+                                <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Transparent" />
+                                        <Setter Property="BorderThickness" Value="0" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        
+                    </ListView>
+                </Border>
+                
+                
+                
+                <!--<DataGrid
                     Grid.Row="2"
                     Grid.ColumnSpan="2"
                     x:Name="DataShower"
@@ -55,17 +85,22 @@
                     IsReadOnly="True"
                     RowBackground="{StaticResource MainColorLightDark}"
                     
+                    
                     >
                     <DataGrid.Columns>
-                       <DataGridTextColumn Header="Castka" Binding="{Binding GetPayment, Mode=OneTime}" Foreground="{StaticResource MainColorWhite}"/>
-                        <DataGridTextColumn Header="Datum" Binding="{Binding GetDate, Mode=OneTime}" Foreground="{StaticResource MainColorWhite}"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
-                                    <Image Source="{Binding GetCatergorySourceImage, Mode=OneTime}"/>
+                                    <Image Source="{Binding GetCatergorySourceImage, Mode=OneTime}" Width="50"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>
+                        
+                        <DataGridTextColumn Header="ID" Binding="{Binding GetID, Mode=OneTime}" Foreground="{StaticResource MainColorWhite}"/>
+                        <DataGridTextColumn Header="Castka" Binding="{Binding GetPayment, Mode=OneTime}" Foreground="{StaticResource MainColorWhite}"/>
+                        <DataGridTextColumn Header="Datum" Binding="{Binding GetDate, Mode=OneTime}" Foreground="{StaticResource MainColorWhite}"/>
+                        
+                        
                     </DataGrid.Columns>
 
                     <DataGrid.RowHeaderStyle>
@@ -78,7 +113,7 @@
                     
                     
                     
-                </DataGrid>
+                </DataGrid>-->
             </Grid>
 
         </Grid>

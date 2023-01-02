@@ -13,6 +13,9 @@ namespace BankAccounts.Database.Tables
     {
         [PrimaryKey, AutoIncrement]
         public int id { get; set; }
+
+        [Ignore]
+        public string GetID { get { return "#" + id; } }
         
         public int IdClient { get; set; }
 

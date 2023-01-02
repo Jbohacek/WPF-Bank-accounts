@@ -41,7 +41,7 @@
             <Setter Property="FontFamily" Value="Bahnschrift SemiBold"/>
         </Style>
 
-        
+
     </Page.Resources>
 
     <Border Background="{StaticResource MainColorDark}" 
@@ -90,9 +90,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
-                <StackPanel Margin="15" Grid.Row="1">
-
-                </StackPanel>
+                <StackPanel Margin="15" Grid.Row="1"/>
                 <Border Grid.Row="1" 
                         Background="{StaticResource MainColorLightDark}"
                         CornerRadius="35"
@@ -211,7 +209,7 @@
 
                     </Grid>
 
-                    
+
                 </Border>
 
 
