@@ -5,6 +5,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BankAccounts.Views;
 
 namespace BankAccounts.Database.Tables
 {
@@ -72,7 +73,7 @@ namespace BankAccounts.Database.Tables
                 Array.Reverse(kon);
 
 
-                string Finalni = new string(kon);
+                string Finalni = new(kon);
 
                 if (Finalni.Substring(0, 1) == " ")
                 {
@@ -100,6 +101,11 @@ namespace BankAccounts.Database.Tables
                 return PaymentDay.Day + ". " + PaymentDay.ToString("MMMM").Substring(0, 3);
             
             } }
+        public void OpenTransaction()
+        {
+            ShowTransaction Shower = new ShowTransaction(this);
+            Shower.ShowDialog();
+        }
 
         public override string ToString()
         {

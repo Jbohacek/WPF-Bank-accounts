@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BankAccounts.Database.Tables;
+using Transaction = BankAccounts.Database.Tables.Transaction;
 
 namespace BankAccounts.Controls
 {
@@ -22,7 +24,7 @@ namespace BankAccounts.Controls
     /// </summary>
     public partial class ReportDataRow : UserControl
     {
-
+        public Transaction LokalTransaction { get; set; }
 
         public Database.Tables.Transaction Transakce
         {
@@ -62,7 +64,7 @@ namespace BankAccounts.Controls
 
                 row.ImageTransaction.Source = new BitmapImage(new Uri(transakce.GetCatergorySourceImage, UriKind.Relative));
 
-
+                row.LokalTransaction = transakce;
 
             }
         }
@@ -70,6 +72,11 @@ namespace BankAccounts.Controls
         public ReportDataRow()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            LokalTransaction.OpenTransaction();
         }
     }
 }

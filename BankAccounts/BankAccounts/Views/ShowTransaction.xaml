@@ -1,0 +1,65 @@
+﻿<Window x:Class="BankAccounts.Views.ShowTransaction"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BankAccounts.Views"
+        mc:Ignorable="d"
+        Title="ShowTransaction" Height="250" Width="600"
+        WindowStyle="None" Background="Transparent" 
+        ResizeMode="CanResize" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        >
+    <Window.Resources>
+
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"/>
+            <Setter Property="FontFamily" Value="Cascadia Code SemiLight"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Border Background="{StaticResource MainColorDark}"
+            CornerRadius="25"
+            BorderBrush="{StaticResource MainColorWhite}"
+            BorderThickness="2">
+            
+        <Grid>
+            <Grid Margin="10">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+            <StackPanel Grid.RowSpan="3" Grid.ColumnSpan="2">
+                    <TextBlock Text="Id: " x:Name="IdBlock"></TextBlock>
+                    <TextBlock Text="Amount: " x:Name="AmountBlock"></TextBlock>
+                    <TextBlock Text="Date: " x:Name="DateBlock"></TextBlock>
+                    <TextBlock Text="Person to: " x:Name="ToPersonBlock"></TextBlock>
+                    <TextBlock Text="Category: " x:Name="CategoryBlock"></TextBlock>
+                    <TextBlock Text="Image path: " x:Name="ImagePathBlock"></TextBlock>
+                </StackPanel>
+                
+                <Button Grid.Row="3" Grid.ColumnSpan="2" Width="150" Height="50" Content="OK" 
+                        FontFamily="Arial Unicode MS"
+                        Background="{StaticResource MainColorBlue}"
+                        Foreground="{StaticResource MainColorWhite}"
+                        Click="ButtonBase_OnClick"
+                        FontSize="26">
+                    
+                </Button>
+
+            </Grid>
+        </Grid>
+    </Border>
+    
+    
+</Window>

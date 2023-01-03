@@ -5,7 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BankAccounts.Controls"
              mc:Ignorable="d" 
-             d:DesignHeight="50" d:DesignWidth="800" BorderBrush="{StaticResource MainColorDark}" BorderThickness="1">
+             d:DesignHeight="50"
+             d:DesignWidth="800"
+             BorderBrush="{StaticResource MainColorDark}"
+             BorderThickness="1"
+             MouseDown="UserControl_MouseDown">
+    
+    
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Setter Property="Foreground" Value="{StaticResource MainColorWhite}"/>
@@ -15,6 +21,8 @@
 
         </Style>
     </UserControl.Resources>
+    
+    
     <Grid Background="{StaticResource MainColorLightDark}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -25,7 +33,7 @@
         </Grid.ColumnDefinitions>
 
         <Image x:Name="ImageTransaction" Source="\Pictures\Category\Other.png" Width="30" Height="30"/>
-        <TextBlock Grid.Column="3" Text="#15" FontSize="10" x:Name="IDTrans"/>
+        <TextBlock Grid.Column="3" Text="#15" FontSize="10" x:Name="IDTrans" HorizontalAlignment="Right"/>
         <TextBlock Grid.Column="1" Text="50648" x:Name="AmountTrans" HorizontalAlignment="Center"/>
         <TextBlock Grid.Column="2" Text="15. pro" TextWrapping="Wrap" x:Name="DateTrans" HorizontalAlignment="Center"/>
 
